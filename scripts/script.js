@@ -1,5 +1,6 @@
 const front = "frontCard";
 const back = "backCard";
+const gameBoard = document.querySelector("#gameBoard");
 
 let characters = [
     'ace',
@@ -14,7 +15,26 @@ let characters = [
     'zoro'
 ];
 
-createCardsFromCharacters(characters);
+let cards = null;
+startGame()
+
+function startGame(){
+    cards = createCardsFromCharacters(characters);
+    shuffleCards(cards)
+}
+
+
+function shuffleCards(cards){
+    let currentIndex = cards.length;
+    let randomIndex = 0;
+
+    while (currentIndex !== 0){
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+      
+        [cards[randomIndex], cards[currentIndex]] = [cards[currentIndex], cards[randomIndex]]
+    }
+}
 
 function createCardsFromCharacters(characters){
     let cards = [];
