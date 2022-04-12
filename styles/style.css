@@ -1,21 +1,32 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: 0;
+    box-sizing: border-box;
 }
 
 body{
     font-family: 'Righteous', cursive;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .icon{
-    width: 160px;
-    height: 130px;
+    width: 150px;
+    height: 120px;
+}
+
+#gameBoard{
+    width: 900px;
+    text-align: center;
 }
 
 .card{
-    width: 165px;
-    height: 165px;
+    display: inline-block;
+    width: 155px;
+    height: 155px;
+    margin: 3px;
     position: relative;
     transform-style: preserve-3d;
     transition: transform 600ms;
@@ -39,10 +50,11 @@ body{
 }
 
 .flip{
-    transform:rotateY(180deg);
+    transform: rotateY(180deg);
 }
 
 .backCard{
+
     background-color: rgb(255, 208, 0);
 }
 
