@@ -12,15 +12,17 @@ let game = {
         
         if(!this.firstCard){
             this.firstCard = card;
+            this.firstCard.flipped = true;
             return true;
         }else {
             this.secondCard = card;
+            this.secondCard.flipped = true;
             this.lockMode = true;
             return true;   
         } 
     },
 
-    checkMatch: function(){
+    checkMatch: function(){   
         return this.firstCard.icon === this.secondCard.icon
     },
 
@@ -30,6 +32,11 @@ let game = {
         this.lockMode = false;
     },
 
+    unflipCards: function(){
+        this.firstCard.flipped = false;
+        this.secondCard.flipped = false;
+        this.clearCards();
+    },
 
     characters: [
         'ace',
