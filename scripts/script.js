@@ -12,8 +12,12 @@ function startGame(){
 
 function initializeCards(cards){
     let gameBoard = document.querySelector("#gameBoard");
+    let gameOverLayer = document.querySelector('#gameOver');
 
     gameBoard.innerHTML = '<h1>One piece MemoryGame</h1>';
+    
+    gameOverLayer.innerHTML = `<div>Congratulations! you finished the game</div> 
+                               <button id="restart" onclick="restart()">New game</button>`
 
     cards.forEach(card =>{
         let cardElement = document.createElement("div");
