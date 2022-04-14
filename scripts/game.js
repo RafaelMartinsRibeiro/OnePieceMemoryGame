@@ -93,6 +93,10 @@ let game = {
           
             [this.cards[randomIndex], this.cards[currentIndex]] = [this.cards[currentIndex], this.cards[randomIndex]];
         }
+    },
+
+    gameOver: function(){
+        return this.cards.filter(card => !card.flipped).length == 0;
     }
 }
 
