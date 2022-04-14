@@ -10,12 +10,17 @@ body{
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 .icon{
-    width: 150px;
+    width: 140px;
     height: 120px;
+}
+
+#gameBoard h1{
+    color: #ffffff;
+    text-shadow: 1px 4px 6px rgb(22, 22, 22);
+    margin-bottom: 5px;
 }
 
 #gameBoard{
@@ -23,10 +28,19 @@ body{
     text-align: center;
 }
 
+#timer{
+    font-size: 20px;
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    color: #ffffff;
+    text-shadow: 1px 4px 6px rgb(22, 22, 22);
+}
+
 .card{
     display: inline-block;
-    width: 155px;
-    height: 155px;
+    width: 145px;
+    height: 145px;
     margin: 3px;
     position: relative;
     transform-style: preserve-3d;
@@ -71,6 +85,10 @@ body{
     flex-direction: column;
     position: absolute;
     top: 0;
+}
+
+#gameOver #gameOverTimer{
+    color: white;
 }
 
 #restart{

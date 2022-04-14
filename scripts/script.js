@@ -1,3 +1,9 @@
+let gameStarted = false;
+let timerInterval = null;
+let hh = 0;
+let mm = 0;
+let ss = 0;
+
 startGame();
 
 function startGame(){
@@ -7,7 +13,7 @@ function startGame(){
 function initializeCards(cards){
     let gameBoard = document.querySelector("#gameBoard");
 
-    gameBoard.innerHTML = '';
+    gameBoard.innerHTML = '<h1>One piece MemoryGame</h1>';
 
     cards.forEach(card =>{
         let cardElement = document.createElement("div");
@@ -26,6 +32,10 @@ function initializeCards(cards){
 
 function flipCard(){
 
+    if(!gameStarted){
+        startTimer();
+    }
+
     if(game.setCard(this.id)){
         this.classList.add("flip"); 
 
@@ -35,8 +45,12 @@ function flipCard(){
 
                 if(game.gameOver()){
                     let gameOverLayer = document.querySelector('#gameOver');
+                    let timerLayer = `<div id="gameOverTimer">Your time: ${(hh < 10 ? '0' + hh: hh)}:${(mm < 10 ? '0' + mm: mm)}:${(ss < 10 ? '0' + ss: ss)}</div>`;
 
                     gameOverLayer.style.display = 'flex';
+
+                    stopTimer();
+                    gameOverLayer.innerHTML += timerLayer;
                 }
             }else{
                 let firstCardView = document.getElementById(game.firstCard.id);
@@ -84,7 +98,46 @@ function  createCardFace(face, card, cardElement){
 function restart(){
     let gameOverLayer = document.querySelector('#gameOver');
     gameOverLayer.style.display = 'none';
+    gameStarted = false;
 
     game.clearCards();
+    stopTimer();
     startGame();
 }
+
+function startTimer(){
+    gameStarted = true;
+
+    timerInterval = setInterval(() =>{
+        ss++
+
+        if(ss == 60){
+            ss = 0;
+            mm++
+
+            if(mm == 60){
+                mm = 0;
+                hh++
+            }
+        }
+
+        let timerLayer = (hh < 10 ? "0" + hh: hh) + ":" + (mm < 10 ? "0" + mm: mm) + ":" + (ss < 10 ? "0" + ss: ss)
+    
+        let timer = document.querySelector('#timer');
+        timer.innerText = timerLayer;
+    }, 1000)
+
+}
+
+function stopTimer(){
+    clearInterval(timerInterval);
+    hh = 0;
+    mm = 0;
+    ss = 0; 
+
+    let timerLayer = (hh < 10 ? "0" + hh: hh) + ":" + (mm < 10 ? "0" + mm: mm) + ":" + (ss < 10 ? "0" + ss: ss)
+    
+    let timer = document.querySelector('#timer');
+    timer.innerText = timerLayer;
+}
+
